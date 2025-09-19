@@ -1,6 +1,13 @@
-use crate::Result;
+use crate::{
+    db::{rocksdb_wrapper::RocksDBWrapper, RocksDBTransaction},
+    Result,
+};
+use std::path::Path;
 
-pub trait Backend {
+pub trait Backend
+where
+    Self: Sized,
+{
     type ReadTransaction;
     type WriteTransaction;
 
@@ -8,5 +15,7 @@ pub trait Backend {
 
     fn transaction(&self) -> Self::WriteTransaction;
 
-    fn open_path<P>(path: P) -> Result<Self>;
+    fn open_path<P>(path: P) -> Result<Self>
+    where
+        P: AsRef<Path>;
 }
