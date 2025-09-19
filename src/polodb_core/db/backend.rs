@@ -11,9 +11,9 @@ where
     type ReadTransaction;
     type WriteTransaction;
 
-    fn read_transaction(&self) -> Self::ReadTransaction;
+    fn transaction(&self) -> Result<Self::ReadTransaction>;
 
-    fn transaction(&self) -> Self::WriteTransaction;
+    fn write_transaction(&self) -> Result<Self::WriteTransaction>;
 
     fn open_path<P>(path: P) -> Result<Self>
     where
