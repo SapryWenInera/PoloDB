@@ -1,10 +1,10 @@
 use crate::Result;
 
 pub trait Backend {
-    type ReadTranscation;
+    type ReadTransaction;
     type WriteTransaction;
 
-    fn read_transaction(&self) -> Self::ReadTranscation;
+    fn read_transaction(&self) -> Self::ReadTransaction;
 
     fn transaction(&self) -> Self::WriteTransaction;
 
